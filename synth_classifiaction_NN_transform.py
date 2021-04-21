@@ -73,29 +73,20 @@ class synth_data:
                  , samples = 300    # sample size, < 800 to observe behaviour before normal distribution from large numbers kicks in
                  , features = 5     # true number of explanatory variables for synthetic binary classifiaction problem
                  , shift = 2.0      # shift away from E(X) = 0
-                 , exp = False      # if True, X = exp(X)
+                 , exp = False      # if True, X = exp(X) to simulate nonlinearity
                  ):
         # make synthetic data
         # random n-class classification problem
-        self.X, self.y = make_classification(n_samples = samples
-                                             , n_features = features
-                                             , shift = shift
-                                             , random_state=(nRdata)
-                                             )
+        self.X, self.y = make_classification(n_samples = samples, n_features = features, shift = shift, random_state=(nRdata))
 
         # exponential transform for simulating simple nonlinear relationship
         if exp == True:
             self.X = np.exp(self.X)
 
     # train test split
-    def tts(self
-           # , n_X = 2       # number of features to keep for analyses
-            ):
+    def tts(self):
         # train test split keeping only n_X explanatory variables
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X[:,0:n_X], self.y
-                                                                                , random_state=(nRtts)
-                                                                                , stratify=self.y
-                                                                                )
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X[:,0:n_X], self.y, random_state=(nRtts), stratify=self.y)
 
         scaler_S = StandardScaler()
         self.scaler_S = scaler_S
@@ -149,6 +140,7 @@ class synth_data:
     def X_test_QN_scaled(self):
         return self.X_test_QN_scaled
 
+    # plot histogramms
     def plot_hist(self):
         # unscaled data
         plt.hist(self.X_train[:, 0], alpha=0.6)
@@ -177,12 +169,7 @@ class synth_data:
 
 
 class nn_model:
-    def __init__(self
-                 #, n_X = 5 # dimension of input shape, MUST be == Feature-Dimension
-                 , h1 = 21
-                 , h2 = 5
-                 , lr = 1e-3
-                 ):
+    def __init__(self, h1 = 21, h2 = 5, lr = 1e-3):
         # build a keras model with API
 
         # learning rate
@@ -208,7 +195,7 @@ class nn_model:
         plot_model(self.model, to_file='nn_model.png', show_shapes=True)
 
         # compile
-        self.model.compile(optimizer=opt        # 'adam'
+        self.model.compile(optimizer=opt       
                           , loss=['sparse_categorical_crossentropy']
                           , metrics=['accuracy']
                           )
@@ -219,9 +206,7 @@ class nn_model:
             , yy_train, yy_test, XX_train, XX_test
             , n_epochs= 30
             ):
-        self.history = self.model.fit(XX_train, yy_train, epochs=n_epochs
-                                      , validation_data=(XX_test, yy_test)
-                                      )
+        self.history = self.model.fit(XX_train, yy_train, epochs=n_epochs, validation_data=(XX_test, yy_test))
 
     # plot loss
     def plot_loss(self):
@@ -232,7 +217,6 @@ class nn_model:
         plt.xlabel('epoch')
         plt.legend(['train', 'validation'])
         self.plt_loss = plt
-        #return self.plt_loss
 
     # plot accuracy
     def plot_acc(self):
@@ -242,9 +226,7 @@ class nn_model:
         plt.ylabel('accuracy')
         plt.xlabel('epoch')
         plt.legend(['train', 'validation'])
-        #plt.show()
         self.plt_acc = plt
-        #return self.plt_acc
 
 ##############################################################################
 # implementation
