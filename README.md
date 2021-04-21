@@ -1,3 +1,4 @@
+
 # summary 
 Neural networks can learn well even if the data is skewed, unusually scaled, or otherwise non-optimal. 
 However, it may be difficult to learn if the sample is not large enough for the Law of Large Numbers to work. 
@@ -25,7 +26,7 @@ transformation: StandardScaler, Normalizer, QuantileTransformer(norm)
 
 ![F3_Standard_loss](https://user-images.githubusercontent.com/82636544/115548192-7c163380-a2a7-11eb-8be4-ccd79aa65304.png)
 
-![F4_Standard_acc](https://user-images.githubusercontent.com/82636544/115548194-7caeca00-a2a7-11eb-8cfc-fc797fe7de33.png)
+![F4_Standard_acc](https://user-images.githubusercontent.com/82636544/115551534-86d2c780-a2ab-11eb-95d7-890997cf3a72.png)
 
 ![F5_Normalizer_loss](https://user-images.githubusercontent.com/82636544/115548198-7caeca00-a2a7-11eb-8d7e-a1c3beaf181e.png)
 
