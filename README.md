@@ -13,9 +13,10 @@ The creation of the data is based on a normal distribution.
 One goal is to mimic real data problems. Therefore intentionally create hurdles by including shifting, noise, and restricting the sample and the features available for learning. 
 
 ## analysis
-Cross validataion
-train-test-split
-transformation: StandardScaler, Normalizer, QuantileTransformer(norm)
+* cross validataion
+* train-test-split
+* transformation: StandardScaler, Normalizer, QuantileTransformer(norm)
+* keras neural network
 
 ## results
 
