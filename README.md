@@ -1,13 +1,14 @@
 
 # summary 
 Neural networks can learn well even if the data is skewed, unusually scaled, or otherwise non-optimal. 
+
 However, it may be difficult to learn if the sample is not large enough for the Law of Large Numbers to work. 
 
 For demonstration (and play), various transformation algorithms are applied here to a synthetic dataset to observe the effects on neural network analysis. 
 
 ## synthetic data, synthetic hurdles
-Create a synthetic classification dataset with (default) 5 features. 
-Method: sklearn.datasets.make_classification
+Create a synthetic classification dataset with (default) 5 features.  
+Method: sklearn.datasets.make_classification  
 The creation of the data is based on a normal distribution. 
 
 One goal is to mimic real data problems. Therefore intentionally create hurdles by including shifting, noise, and restricting the sample and the features available for learning. 
